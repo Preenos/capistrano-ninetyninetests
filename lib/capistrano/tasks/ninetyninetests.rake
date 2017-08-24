@@ -1,10 +1,11 @@
 namespace :ninetyninetests do
 	task :crowdci do
-		on fetch(:crowdci_roles) do
-			conf = YAML::load(File.open('config/crowdci.yml'))[fetch(:crowdci_stage)]
-			if Rails.env.production?
+		on primary(:crowdci_roles) do
+			stage = fetch(:crowdci_stage)
+			conf = YAML::load(File.open('config/crowdci.yml'))[stage]
+			if stage == "production"
 				@server_name = "http://99tests.com"
-			elsif Rails.env.staging?
+			elsif stage == "staging"
 				@server_name = "http://testfolio.in"
 			else
 				@server_name = "http://localhost:3000"
@@ -26,7 +27,7 @@ namespace :ninetyninetests do
 						:headers => {"X-Auth-User" => "#{conf['email']}", "X-Auth-Key" => "#{conf['api_key']}",'Content-Type' => 'application/json'})
 					if new_cycle.code == 201
 						puts "CrowdCI: Cycle successfully created"
-						update_fixed_bugs(response,new_cycle,File.read(Rails.root.join("TESTME.md")))
+						update_fixed_bugs(response,new_cycle,File.read("TESTME.md"))
 					else
 						puts "CrowdCI: Issue creating cycle, admins have been notified"
 					end
@@ -40,7 +41,8 @@ namespace :ninetyninetests do
 	end
 	def update_fixed_bugs(from_cycle,to_cycle,initial_requirement=nil)
 		# puts "updating requirements from cycle #{from_cycle['id']} to #{to_cycle['id']}"
-		conf = YAML::load(File.open('config/crowdci.yml'))[fetch(:stage)]
+		stage = fetch(:crowdci_stage)
+		conf = YAML::load(File.open('config/crowdci.yml'))[stage]
 		git_messages = `git log --since="#{from_cycle['start_time']}" --name-only`
 		re = /#bug-([0-9]+)/
 		bugs_ids = git_messages.scan re
