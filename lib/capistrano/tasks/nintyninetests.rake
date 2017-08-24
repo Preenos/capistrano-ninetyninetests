@@ -63,6 +63,9 @@ namespace :ninetyninetests do
 			:body => {requirement: requirement}.to_json,
 			:headers => {"X-Auth-User" => "#{conf['email']}", "X-Auth-Key" => "#{conf['api_key']}",'Content-Type' => 'application/json'})
 	end
+	after 'deploy:published' do
+	    invoke 'ninetyninetests:crowdci'
+	end
 end
 namespace :load do
 	task :defaults do
