@@ -1,6 +1,6 @@
 namespace :ninetyninetests do
 	task :crowdci do
-		on primary(:crowdci_roles) do
+		on primary(fetch(:crowdci_roles)) do
 			stage = fetch(:crowdci_stage)
 			conf = YAML::load(File.open('config/crowdci.yml'))[stage]
 			if stage == "production"
