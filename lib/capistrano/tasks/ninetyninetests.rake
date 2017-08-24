@@ -71,7 +71,7 @@ namespace :ninetyninetests do
 end
 namespace :load do
 	task :defaults do
-		set_if_empty :crowdci_roles, -> { roles(:web) }
+		set_if_empty :crowdci_roles, :web
 		set_if_empty :crowdci_stage, "production"
 	end
 end
