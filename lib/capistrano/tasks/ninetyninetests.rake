@@ -1,3 +1,4 @@
+require 'httparty'
 namespace :ninetyninetests do
 	task :crowdci do
 		on primary(fetch(:crowdci_roles)) do
