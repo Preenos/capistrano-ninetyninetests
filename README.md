@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-To trigger a new test cycle on 99tests, create a TESTME.md file with requirements.
+To trigger a new test cycle on 99tests, create a TESTME.md file with requirements before you deploy your code.
 
 Add bug hastags(e.g. #bug-12543) to your commit messages to automatically mark bugs as fixed everytime you deploy the code.
 
