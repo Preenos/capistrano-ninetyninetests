@@ -1,15 +1,15 @@
 # Capistrano::Ninetyninetests
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/capistrano/ninetyninetests`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem integrates your project with 99tests CrowdCI.
 
-TODO: Delete this and the text above, and describe your gem
+Use this gem to automatically update bugfix status and launch new cycles to test your product.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'capistrano-ninetyninetests'
+gem 'capistrano-ninetyninetests', require: false
 ```
 
 And then execute:
@@ -22,13 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To trigger a new test cycle on 99tests, create a TESTME.md file with requirements.
 
-## Development
+Add bug hastags(e.g. #bug-12543) to your commit messages to automatically mark bugs as fixed everytime you deploy the code.
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+New cycles will be triggered everytime you modify TESTME.md and deploy.
 
 ## Contributing
 
