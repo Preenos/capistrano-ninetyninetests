@@ -20,6 +20,14 @@ Or install it yourself as:
 
     $ gem install capistrano-ninetyninetests
 
+## Integration
+
+To integrate your deployment with 99tests, 
+
+1. Go to your products page in 99tests
+2. click on the "Deploy Integration" button on the appropriate button
+3. Follow the instrunctions
+
 ## Usage
 
 To trigger a new test cycle on 99tests, create a TESTME.md file with requirements before you deploy your code.
