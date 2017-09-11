@@ -4,6 +4,10 @@ namespace :ninetyninetests do
     on primary(fetch(:crowdci_roles)) do
       stage = fetch(:crowdci_stage)
       conf = YAML::load(File.open('config/crowdci.yml'))[stage]
+      if conf.nil?
+        info "CrowdCI: no configuration found for this environment, skipping"
+        return
+      end
       if stage == "production"
         @server_name = "http://99tests.com"
       elsif stage == "staging"
