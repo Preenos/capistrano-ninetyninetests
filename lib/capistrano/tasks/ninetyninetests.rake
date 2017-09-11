@@ -6,7 +6,7 @@ namespace :ninetyninetests do
       conf = YAML::load(File.open('config/crowdci.yml'))[stage]
       if conf.nil?
         info "CrowdCI: no configuration found for this environment, skipping"
-        return
+        next
       end
       if stage == "production"
         @server_name = "http://99tests.com"
