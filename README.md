@@ -26,7 +26,7 @@ To integrate your deployment with 99tests,
 
 1. Go to your products page in 99tests
 2. click on the "Deploy Integration" button on the appropriate button
-3. Follow the instrunctions
+3. Follow the instructions
 
 ## Usage
 
